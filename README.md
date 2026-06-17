@@ -8,3 +8,5 @@ This repository contains a list of physics simulations that I have written. Thes
 - Double Pendulum
 - Geodesics
 - N-Body
+---
+TODO: Upload photos / animations of each simulation into the README for quick reference
