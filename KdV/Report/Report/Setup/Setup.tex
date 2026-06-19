@@ -1,0 +1,35 @@
+\section{Method}\label{sec:method}
+
+For this solver, the main computational challenge is efficiently computing the matrix inverse. For this, we will be using Gaussian elimination from the \mintinline{py}{NumPy} library which is written in C++ allowing for high performance computation.
+
+After this, we can simply iterate over the initial state to progress the simulation. We record the values in an array which is passed to \mintinline{py}{MatPlotLib} for animating and plotting.
+
+\subsection{Derivative Approximations}
+
+In order to numerically approximate the values of the derivatives involved in Equation \ref{eq:kdv}, we will use the first principles definition of the derivative.
+Specifically, for the first order derivative, it is convenient to use the "forward" derivative.
+\begin{align}
+  \partial_{x} \phi \approx \frac{\phi(x+h)-\phi(x)}{h}
+\end{align}
+
+However, for the third order derivative, we would get a "lop-sided" definition, and in our finite resolution simulation this will add a lot of numerical error. In order to reduce this, and make the derivative "more symmetric", we use an "average" derivative, and apply this thrice. The end effect, is that we sample points at $x+2h, x+h, x-h, x-2h$, which means the derivative is sensitive to differences on both sides.
+
+\begin{align}
+  \partial_{xxx} \approx \frac{\phi(x+2h) - 2 \phi(x+h) + 2 \phi(x-h) - \phi(x-2h)}{h^3}
+\end{align}
+
+The derivation of this result is provided in Appendix A.
+
+\subsection{Boundary Conditions}
+
+In order to simulate different boundary conditions, we create a function \mintinline{py}{phi()} which would take in an index and output a value corresponding to the height at that index.
+\vs
+
+The reason this is necessary is because the higher order derivatives will make calls to values of $\phi$ which are in fact outside of the array's bounds. To resolve this, the \mintinline{py}{phi()} function will still be able to return values based on some rule. The modularity of using a dedicated function to do this and passing this as a parameter to various functions means that we can very easily swap boundary conditions without having to rewrite sections of code each time.
+
+
+
+\subsubsection{Periodic Boundary Conditions}
+
+For periodic boundary conditions, we see that we can use the modulus function to cause the indices to wrap around to the start of the array.
+

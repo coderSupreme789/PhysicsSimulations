@@ -1,0 +1,25 @@
+\section{Introduction}\label{sec:intro}
+
+The key equation we are using here is the Korteweg-de-Vries (KdV) equation for waves in shallow water \cite{kdveqn}.
+\begin{align}
+\partial_{t} \phi + \partial_{x}^3 \phi - 6 \phi \  \partial_{x} \phi = 0
+\label{eq:kdv}
+\end{align}
+In order to solve this numerically, we will be using a simple forward Euler approach. Something more stable, like Crank-Nicholson would potentially be quite difficult to apply, but we will expand on this later.
+
+\vs
+In order to apply this, we define the time step size $\delta t$, and the space step size as $\delta x$. Then the position of a point in space is represented using the index $i$, such that $x = i \delta x$, and for time we use the index $j$, so that $t = j \delta t$. Then, assuming that the step sizes are small enough relative to the system being considered, we can apply the following approximations to obtain a linear system of equations. We will also write $\phi_{i,j }$ to refer to the value of $\phi$ at $x = i \delta x$, and $t = j \delta t$.
+With some further rearrangement (see Appendix 1), we get that
+\tbc
+
+Now, we see that we can quite easily compute the new value for each of the positions in the middle so long as the values to the right are known. But this means that we will need to find a condition on the right hand side that is realistic. We will try several.
+
+\subsection{Zero Value}
+We will first try the simplest of all, just setting all the values past the boundary to be zero. I expect that this will provide quite normal behaviour until the solitons arrive at the boundary at which point we will start to see some really quite violent behaviour due to the large gradient.
+
+\subsection{Periodic}
+Based on the work of Guan and Kuksin, we can see that if we set the values to loop back around, we will get a continuous system that will allow the soliton to keep moving through. For visualisation, we will display multiple copies of the system side by side. This will mean that if we can sufficiently make the box large enough, we can have a smooth playground in which to test things like multiple soliton collisions
+
+\subsection{Forced Boundary}
+Based on the work of Huang and Lin, we can see that some kind of forced oscillation may perhaps be worth investigating.
+

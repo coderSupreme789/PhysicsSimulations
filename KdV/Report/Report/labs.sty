@@ -1,0 +1,212 @@
+\ProvidesPackage{labs}
+
+\usepackage{amsmath, amssymb, enumitem, tikz, wrapfig, float, longtable, microtype, sectsty, subcaption, braket,  amsthm, import, transparent}
+%\renewcommand{\arraystretch}{1.6}
+
+\setlength{\parindent}{13pt}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{caption}
+\captionsetup[figure]{font=sf, labelfont=bf}
+\usepackage[scaled=.92]{helvet}
+\allsectionsfont{\fontfamily{phv}}
+
+\usepackage{palatino}
+\fontfamily{ppl}\selectfont
+\allsectionsfont{\sffamily}
+\usepackage{layouts}
+\usepackage{ragged2e}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% LaTeX Overlay Generator - Annotated Figures v0.0.1
+% Created with http://ff.cx/latex-overlay-generator/
+% If this generator saves you time, consider donating 5,- EUR! :-)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\annotatedFigureBoxCustom{bottom-left}{top-right}{label}{label-position}{box-color}{label-color}{border-color}{text-color}
+\newcommand*\annotatedFigureBoxCustom[8]{\draw[#5,thick,rounded corners] (#1) rectangle (#2);\node at (#4) [fill=#6,thick,shape=circle,draw=#7,inner sep=2pt,font=\sffamily,text=#8] {\textbf{#3}};}
+%\annotatedFigureBox{bottom-left}{top-right}{label}{label-position}
+\newcommand*\annotatedFigureBox[4]{\annotatedFigureBoxCustom{#1}{#2}{#3}{#4}{red}{white}{black}{black}}
+\newcommand*\annotatedFigureText[4]{\node[draw=none, anchor=south west, text=#2, inner sep=0, text width=#3\linewidth,font=\sffamily] at (#1){#4};}
+\newenvironment {annotatedFigure}[1]{\centering\begin{tikzpicture}
+\node[anchor=south west,inner sep=0] (image) at (0,0) { #1};\begin{scope}[x={(image.south east)},y={(image.north west)}]}{\end{scope}\end{tikzpicture}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%https://tex.stackexchange.com/questions/438775/how-to-insert-a-pdf-page-as-a-front-cover
+\usepackage{pdfpages}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    pdftitle={General Physics Lab Report},
+}
+
+\usepackage{graphicx}
+\usepackage{adjustbox}
+%\graphicspath{ {./images/} }
+%For images level with the top of the enumerate use
+%\adjustbox{valign=t}{\includegraphics[width=10cm]{velocityGraph.jpg}}
+
+%Margins, standard is 0.8in
+%\usepackage[margin=2cm]{geometry}
+
+
+%Units
+\usepackage{siunitx}
+\DeclareSIUnit\year{yr}
+\sisetup{uncertainty-mode=separate}
+%Inter font
+%\usepackage{inter}
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+%Ordered numbers (1st, 2nd, 3rd,...) https://tex.stackexchange.com/questions/4118/whats-the-quickest-way-to-write-2nd-3rd-etc-in-latex
+\usepackage[super]{nth}
+
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\fancyhead[L]{O. Tiwari}
+%\fancyhead[C]{kebl8720}
+%\fancyhead[R]{\rightmark}
+%\fancyfoot[L]{}
+%\fancyfoot[C]{}
+%\fancyfoot[R]{\thepage}
+%\renewcommand{\headrulewidth}{0.4pt}
+%\renewcommand{\footrulewidth}{2pt}
+%\setlength{\headheight}{14.5pt}
+%\fancyhfinit{\sffamily}
+\colorlet{RED}{red}
+
+\newcommand{\tbc}{\vspace{11pt} {\huge \textcolor{red}{TO BE COMPLETED}}}
+\newcommand{\tbr}{\vspace{11pt} {\huge \textcolor{blue}{TO BE REVIEWED}}}
+
+
+\usepackage[ISO]{diffcoeff} 
+\newcommand{\vs}{\vspace{13pt}}
+
+
+\DeclareSIUnit \parsec {pc}
+\DeclareSIUnit \jansky {Jy}
+
+\usepackage[cal=zapfc]{mathalfa}
+\usepackage[most]{tcolorbox}
+\newtcbtheorem{theo}%
+    {Theorem}{}{theorem}
+
+% https://github.com/gillescastel/lecture-notes/tree/master
+\makeatother
+\usepackage{thmtools}
+\usepackage[framemethod=TikZ]{mdframed}
+\mdfsetup{skipabove=1em,skipbelow=0em}
+\theoremstyle{definition}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{ForestGreen!70!black}, bodyfont=\sffamily,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=ForestGreen, backgroundcolor=ForestGreen!5,
+    }
+]{thmgreenbox}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{NavyBlue!70!black}, bodyfont=\sffamily,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=NavyBlue, backgroundcolor=NavyBlue!5,
+    }
+]{thmbluebox}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{NavyBlue!70!black}, bodyfont=\sffamily,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=NavyBlue
+    }
+]{thmblueline}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{RawSienna!70!black}, bodyfont=\sffamily,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=RawSienna, backgroundcolor=RawSienna!5,
+    }
+]{thmredbox}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{RawSienna!70!black}, bodyfont=\sffamily,
+    numbered=no,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=RawSienna, backgroundcolor=RawSienna!1,
+    },
+    qed=\qedsymbol
+]{thmproofbox}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{NavyBlue!70!black}, bodyfont=\sffamily,
+    numbered=no,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=NavyBlue, backgroundcolor=NavyBlue!1,
+    },
+]{thmexplanationbox}
+
+
+
+\declaretheorem[style=thmgreenbox, name=Definition]{definition}
+\declaretheorem[style=thmbluebox, numbered=no, name=Example]{eg}
+\declaretheorem[style=thmredbox, name=Proposition]{prop}
+\declaretheorem[style=thmredbox, name=Theorem]{theorem}
+\declaretheorem[style=thmredbox, name=Lemma]{lemma}
+\declaretheorem[style=thmredbox, numbered=no, name=Corollary]{corollary}
+
+\declaretheorem[style=thmproofbox, name=Proof]{replacementproof}
+\renewenvironment{proof}[1][\proofname]{\vspace{-10pt}\begin{replacementproof}}{\end{replacementproof}}
+
+
+\declaretheorem[style=thmexplanationbox, name=Proof]{tmpexplanation}
+\newenvironment{explanation}[1][]{\vspace{-10pt}\begin{tmpexplanation}}{\end{tmpexplanation}}
+
+\declaretheorem[style=thmblueline, numbered=no, name=Remark]{remark}
+\declaretheorem[style=thmblueline, numbered=no, name=Note]{note}
+
+\newtheorem*{uovt}{UOVT}
+\newtheorem*{notation}{Notation}
+\newtheorem*{previouslyseen}{As previously seen}
+\newtheorem*{problem}{Problem}
+\newtheorem*{observe}{Observe}
+\newtheorem*{property}{Property}
+\newtheorem*{intuition}{Intuition}
+
+% Summary of all added tools
+% definition, example (eg), proposition (prop), theorem, lemma, corollary, proof, explanation
+% The rest below are just simple formatting, the above are the main ones to keep in mind
+
+
+
+%%%% 
+% The following lines control how the text is arranged on the page:
+\setlength{\voffset}{-25mm}
+\setlength{\hoffset}{-10mm}
+\setlength{\oddsidemargin}{0mm} 
+\setlength{\evensidemargin}{0mm}
+\setlength{\marginparwidth}{0mm}
+\addtolength{\textwidth}{50mm}
+\addtolength{\textheight}{55mm}
+%%%%
+
+\newcommand{\labscript}[2]{\textsf{#1} --- \emph{#2}} % this line defines a new command called "\labscript", and the "[2]" means your command takes two arguments "#1" and "#2". The final bracketed expression is the code that will execute when you call your command, with the relevant argument in the relevant position. This is used here to allow you to reference the GP32 laboratory manuscript using our "house style" formatting. Argument #1 is the code, GP32 in this case, and argument #2 is the title, in this case "Latent heat of vaporisation of nitrogen".
+
+\usepackage{minted}
+%\newcommand{\m}[1]{\mintinline{py}{#1}}
+%\newminted[mpy]{py}{tabsize=2, breaklines}

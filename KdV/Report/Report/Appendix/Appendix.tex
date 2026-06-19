@@ -1,0 +1,19 @@
+\section*{Appendix A}\label{sec:appendixA}
+%
+% Here, we will derive the Crank-Nicholson discretisation for the KdV equations. Let $\partial_{t} \phi = f(\phi, x, t)$, so that Crank-Nicholson provides
+% \begin{align}
+%   \frac{\phi_{i}^{j+1} - \phi_{i}^{j}}{\delta t} = \frac{1}{2} \left( f(\phi_{i}^{j+1}, x, t+ \delta t) + f(\phi_{i}^{j}, x, t)\right)
+% \end{align}
+%
+%
+
+Here we will derive the discretized version of the differential equation so that we can use an explicit step method.
+
+Firstly, we need to write the spatial derivatives. Specifically, we want to provide a second order error in the step size. To do this, we will use the central difference result.
+
+\begin{align*}
+  \diffp[3]{\phi}{x} &\approx \frac{\frac{\phi(x+2h) - 2 \phi (x+h) + \phi (x)}{h^2} - \frac{\phi(x) - 2 \phi(x-h) + \phi(x-2h)}{h^2}}{2h}\\
+                     &= \frac{\phi(x+2h) - 2 \phi(x+h) + 2\phi(x-h) - \phi(x-2h)}{2h^3}
+\end{align*}
+
+This has an error of order $h^2$.
