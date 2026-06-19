@@ -10,6 +10,12 @@ This repository contains a list of physics simulations that I have written. Thes
 - Geodesics
 - N-Body
 
+# To-Do list
+- [ ] Add photos of simulations to the README
+- [ ] Fix the KdV solver
+- [ ] Improve the optics solvers
+- [ ] Implement Barnes-Hut tree solver for N-body
+
 ## Simulations / methods to add to this repository
 
 - [ ] Eigenvalue/eigenvector problem
