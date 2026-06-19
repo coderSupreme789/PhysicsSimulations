@@ -58,3 +58,4 @@ This repository contains a list of physics simulations that I have written. Thes
 - [ ] Convex optimisation & semidefinite programming (conformal bootstrap / SDPB)
 - [ ] Automatic differentiation (JAX)
 - [ ] Numerical relativity: finite-difference/spectral Einstein solvers
+- [ ] PINNs
